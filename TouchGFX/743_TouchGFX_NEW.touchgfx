@@ -1,0 +1,877 @@
+{
+  "Application": {
+    "Screens": [
+      {
+        "Name": "Main",
+        "CanvasBufferSize": 9600,
+        "Components": [
+          {
+            "Type": "Box",
+            "Name": "background",
+            "Width": 640,
+            "Height": 480
+          },
+          {
+            "Type": "Shape",
+            "Name": "blueRhombus",
+            "X": 273,
+            "Y": 200,
+            "Width": 80,
+            "Height": 80,
+            "Color": {
+              "Green": 47,
+              "Blue": 255
+            },
+            "Points": [
+              {
+                "X": 40.0
+              },
+              {
+                "X": 80.0,
+                "Y": 40.0
+              },
+              {
+                "X": 40.0,
+                "Y": 80.0
+              },
+              {
+                "Y": 40.0
+              }
+            ],
+            "XScale": 1.0,
+            "YScale": 1.0
+          },
+          {
+            "Type": "Circle",
+            "Name": "redCircle",
+            "X": 65,
+            "Y": 200,
+            "Width": 80,
+            "Height": 80,
+            "Color": {
+              "Red": 255
+            },
+            "CenterX": 40.0,
+            "CenterY": 40.0,
+            "Radius": 40.0,
+            "EndAngle": 360.0,
+            "CapPrecision": "Butt"
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "circleFlagBtn",
+            "X": 200,
+            "Y": 352,
+            "Width": 240,
+            "Height": 50,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_medium_rounded_pressed.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_50_medium_rounded_normal.png",
+            "TextId": "circleBtnMove",
+            "ReleasedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0",
+            "Preset": "alternate_theme\\presets\\button\\regular\\height_50\\medium_rounded_normal.json"
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "changeBGBtn",
+            "X": 200,
+            "Y": 419,
+            "Width": 240,
+            "Height": 50,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_medium_rounded_pressed.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_50_medium_rounded_normal.png",
+            "TextId": "changeBgBtn",
+            "ReleasedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0",
+            "Preset": "alternate_theme\\presets\\button\\regular\\height_50\\medium_rounded_normal.json"
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "changeScreenBtn",
+            "X": 380,
+            "Y": 31,
+            "Width": 240,
+            "Height": 50,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_medium_rounded_pressed.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_50_medium_rounded_normal.png",
+            "TextId": "changeScreen",
+            "ReleasedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0",
+            "Preset": "alternate_theme\\presets\\button\\regular\\height_50\\medium_rounded_normal.json"
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "circleFlagBtnClicked",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "circleFlagBtn"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "circleFlagBtnClicked"
+            }
+          },
+          {
+            "InteractionName": "circleMove",
+            "Trigger": {
+              "Type": "TriggerOnEveryTick",
+              "TickCount": 20
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "circleMove"
+            }
+          },
+          {
+            "InteractionName": "changeBGBtnClicked",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "changeBGBtn"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "changeBGBtnClicked"
+            }
+          },
+          {
+            "InteractionName": "changeScreen",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "changeScreenBtn"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionNone",
+              "ActionComponent": "Graph"
+            }
+          }
+        ]
+      },
+      {
+        "Name": "Graph",
+        "CanvasBufferSize": 9600,
+        "Components": [
+          {
+            "Type": "Box",
+            "Name": "box1",
+            "Width": 640,
+            "Height": 480,
+            "Color": {
+              "Red": 120,
+              "Green": 207,
+              "Blue": 163
+            }
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "graphBtn",
+            "X": 95,
+            "Y": 222,
+            "Width": 100,
+            "Height": 36,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_36_tiny_rounded_pressed.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_36_tiny_rounded_normal.png",
+            "TextId": "graphBtnOff",
+            "ReleasedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0",
+            "Preset": "alternate_theme\\presets\\button\\regular\\height_36\\tiny_rounded_normal.json"
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "addPointBtn",
+            "X": 270,
+            "Y": 222,
+            "Width": 100,
+            "Height": 36,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_36_tiny_rounded_pressed.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_36_tiny_rounded_normal.png",
+            "TextId": "addPointBtn",
+            "ReleasedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0",
+            "Preset": "alternate_theme\\presets\\button\\regular\\height_36\\tiny_rounded_normal.json"
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "changeScreenBtn",
+            "X": 445,
+            "Y": 222,
+            "Width": 100,
+            "Height": 36,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_36_tiny_rounded_pressed.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_36_tiny_rounded_normal.png",
+            "TextId": "changeScreen",
+            "ReleasedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0",
+            "Preset": "alternate_theme\\presets\\button\\regular\\height_36\\tiny_rounded_normal.json"
+          },
+          {
+            "Type": "Container",
+            "Name": "graphContainer",
+            "Width": 640,
+            "Height": 480,
+            "Components": [
+              {
+                "Type": "StaticGraph",
+                "Name": "ch2Graph",
+                "X": 370,
+                "Y": 30,
+                "Width": 250,
+                "Height": 180,
+                "DataSeed": -785269406,
+                "NumberOfValues": 100,
+                "MaxX": 100.0,
+                "MinX": -100.0,
+                "PrecisionX": "1",
+                "MaxY": 100.0,
+                "MinY": -100.0,
+                "PrecisionY": "1",
+                "XAxisScale": 1.0,
+                "GraphDrawers": [
+                  {
+                    "Type": "DotsDrawer",
+                    "DotWidth": 4,
+                    "FileNameImage": "",
+                    "Color": {
+                      "Red": 255
+                    }
+                  }
+                ],
+                "XAxisGrid": {
+                  "Type": "GraphGrid",
+                  "Color": {
+                    "Red": 255,
+                    "Green": 255,
+                    "Blue": 255
+                  },
+                  "Interval": 100.0,
+                  "LineWidth": 1
+                },
+                "MinorXAxisGrid": {
+                  "Type": "GraphGrid",
+                  "Color": {
+                    "Red": 255,
+                    "Green": 255,
+                    "Blue": 255
+                  },
+                  "Interval": 20.0,
+                  "LineWidth": 1,
+                  "Alpha": 50
+                },
+                "YAxisGrid": {
+                  "Type": "GraphGrid",
+                  "Color": {
+                    "Red": 255,
+                    "Green": 255,
+                    "Blue": 255
+                  },
+                  "Interval": 100.0,
+                  "LineWidth": 1
+                },
+                "MinorYAxisGrid": {
+                  "Type": "GraphGrid",
+                  "Color": {
+                    "Red": 255,
+                    "Green": 255,
+                    "Blue": 255
+                  },
+                  "Interval": 20.0,
+                  "LineWidth": 1,
+                  "Alpha": 50
+                }
+              },
+              {
+                "Type": "StaticGraph",
+                "Name": "ch4Graph",
+                "X": 370,
+                "Y": 270,
+                "Width": 250,
+                "Height": 180,
+                "DataSeed": 1158820142,
+                "NumberOfValues": 100,
+                "MaxX": 100.0,
+                "MinX": -100.0,
+                "PrecisionX": "1",
+                "MaxY": 100.0,
+                "MinY": -100.0,
+                "PrecisionY": "1",
+                "XAxisScale": 1.0,
+                "GraphDrawers": [
+                  {
+                    "Type": "DotsDrawer",
+                    "DotWidth": 4,
+                    "FileNameImage": "",
+                    "Color": {
+                      "Red": 255
+                    }
+                  }
+                ],
+                "XAxisGrid": {
+                  "Type": "GraphGrid",
+                  "Color": {
+                    "Red": 255,
+                    "Green": 255,
+                    "Blue": 255
+                  },
+                  "Interval": 100.0,
+                  "LineWidth": 1
+                },
+                "MinorXAxisGrid": {
+                  "Type": "GraphGrid",
+                  "Color": {
+                    "Red": 255,
+                    "Green": 255,
+                    "Blue": 255
+                  },
+                  "Interval": 20.0,
+                  "LineWidth": 1,
+                  "Alpha": 50
+                },
+                "YAxisGrid": {
+                  "Type": "GraphGrid",
+                  "Color": {
+                    "Red": 255,
+                    "Green": 255,
+                    "Blue": 255
+                  },
+                  "Interval": 100.0,
+                  "LineWidth": 1
+                },
+                "MinorYAxisGrid": {
+                  "Type": "GraphGrid",
+                  "Color": {
+                    "Red": 255,
+                    "Green": 255,
+                    "Blue": 255
+                  },
+                  "Interval": 20.0,
+                  "LineWidth": 1,
+                  "Alpha": 50
+                }
+              },
+              {
+                "Type": "StaticGraph",
+                "Name": "ch3Graph",
+                "X": 20,
+                "Y": 270,
+                "Width": 250,
+                "Height": 180,
+                "DataSeed": 1158820142,
+                "NumberOfValues": 100,
+                "MaxX": 100.0,
+                "MinX": -100.0,
+                "PrecisionX": "1",
+                "MaxY": 100.0,
+                "MinY": -100.0,
+                "PrecisionY": "1",
+                "XAxisScale": 1.0,
+                "GraphDrawers": [
+                  {
+                    "Type": "DotsDrawer",
+                    "DotWidth": 4,
+                    "FileNameImage": "",
+                    "Color": {
+                      "Red": 255
+                    }
+                  }
+                ],
+                "XAxisGrid": {
+                  "Type": "GraphGrid",
+                  "Color": {
+                    "Red": 255,
+                    "Green": 255,
+                    "Blue": 255
+                  },
+                  "Interval": 100.0,
+                  "LineWidth": 1
+                },
+                "MinorXAxisGrid": {
+                  "Type": "GraphGrid",
+                  "Color": {
+                    "Red": 255,
+                    "Green": 255,
+                    "Blue": 255
+                  },
+                  "Interval": 20.0,
+                  "LineWidth": 1,
+                  "Alpha": 50
+                },
+                "YAxisGrid": {
+                  "Type": "GraphGrid",
+                  "Color": {
+                    "Red": 255,
+                    "Green": 255,
+                    "Blue": 255
+                  },
+                  "Interval": 100.0,
+                  "LineWidth": 1
+                },
+                "MinorYAxisGrid": {
+                  "Type": "GraphGrid",
+                  "Color": {
+                    "Red": 255,
+                    "Green": 255,
+                    "Blue": 255
+                  },
+                  "Interval": 20.0,
+                  "LineWidth": 1,
+                  "Alpha": 50
+                }
+              },
+              {
+                "Type": "StaticGraph",
+                "Name": "ch1Graph",
+                "X": 20,
+                "Y": 30,
+                "Width": 250,
+                "Height": 180,
+                "DataSeed": 1158820142,
+                "NumberOfValues": 100,
+                "MaxX": 100.0,
+                "MinX": -100.0,
+                "PrecisionX": "1",
+                "MaxY": 100.0,
+                "MinY": -100.0,
+                "PrecisionY": "1",
+                "XAxisScale": 1.0,
+                "GraphDrawers": [
+                  {
+                    "Type": "DotsDrawer",
+                    "DotWidth": 4,
+                    "FileNameImage": "",
+                    "Color": {
+                      "Red": 255
+                    }
+                  }
+                ],
+                "XAxisGrid": {
+                  "Type": "GraphGrid",
+                  "Color": {
+                    "Red": 255,
+                    "Green": 255,
+                    "Blue": 255
+                  },
+                  "Interval": 100.0,
+                  "LineWidth": 1
+                },
+                "MinorXAxisGrid": {
+                  "Type": "GraphGrid",
+                  "Color": {
+                    "Red": 255,
+                    "Green": 255,
+                    "Blue": 255
+                  },
+                  "Interval": 20.0,
+                  "LineWidth": 1,
+                  "Alpha": 50
+                },
+                "YAxisGrid": {
+                  "Type": "GraphGrid",
+                  "Color": {
+                    "Red": 255,
+                    "Green": 255,
+                    "Blue": 255
+                  },
+                  "Interval": 100.0,
+                  "LineWidth": 1
+                },
+                "MinorYAxisGrid": {
+                  "Type": "GraphGrid",
+                  "Color": {
+                    "Red": 255,
+                    "Green": 255,
+                    "Blue": 255
+                  },
+                  "Interval": 20.0,
+                  "LineWidth": 1,
+                  "Alpha": 50
+                }
+              }
+            ]
+          },
+          {
+            "Type": "Container",
+            "Name": "graphTextContainer",
+            "Width": 640,
+            "Height": 480,
+            "Components": [
+              {
+                "Type": "TextArea",
+                "Name": "ch1SensorText",
+                "X": 209,
+                "Y": 192,
+                "Width": 58,
+                "Height": 21,
+                "TextId": "__SingleUse_RGJN",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 255,
+                  "Green": 255
+                },
+                "AutoSize": true
+              },
+              {
+                "Type": "Box",
+                "Name": "ch1Box",
+                "X": 20,
+                "Y": 30,
+                "Width": 30,
+                "Height": 20,
+                "Color": {
+                  "Red": 255,
+                  "Green": 255
+                }
+              },
+              {
+                "Type": "TextArea",
+                "Name": "ch1GraphText",
+                "X": 20,
+                "Y": 30,
+                "Width": 30,
+                "Height": 21,
+                "TextId": "__SingleUse_723H",
+                "TextRotation": "0",
+                "AutoSize": true
+              },
+              {
+                "Type": "TextArea",
+                "Name": "ch2SensorText",
+                "X": 559,
+                "Y": 192,
+                "Width": 58,
+                "Height": 21,
+                "TextId": "__SingleUse_B2S8",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 255,
+                  "Green": 255
+                },
+                "AutoSize": true
+              },
+              {
+                "Type": "Box",
+                "Name": "ch2Box",
+                "X": 370,
+                "Y": 30,
+                "Width": 30,
+                "Height": 20,
+                "Color": {
+                  "Red": 255,
+                  "Green": 255
+                }
+              },
+              {
+                "Type": "TextArea",
+                "Name": "ch2GraphText",
+                "X": 370,
+                "Y": 30,
+                "Width": 30,
+                "Height": 21,
+                "TextId": "__SingleUse_B787",
+                "TextRotation": "0",
+                "AutoSize": true
+              },
+              {
+                "Type": "TextArea",
+                "Name": "ch3SensorText",
+                "X": 210,
+                "Y": 432,
+                "Width": 58,
+                "Height": 21,
+                "TextId": "__SingleUse_WGTF",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 255,
+                  "Green": 255
+                },
+                "AutoSize": true
+              },
+              {
+                "Type": "Box",
+                "Name": "ch3Box",
+                "X": 21,
+                "Y": 270,
+                "Width": 30,
+                "Height": 20,
+                "Color": {
+                  "Red": 255,
+                  "Green": 255
+                }
+              },
+              {
+                "Type": "TextArea",
+                "Name": "ch3GraphText",
+                "X": 21,
+                "Y": 270,
+                "Width": 30,
+                "Height": 21,
+                "TextId": "__SingleUse_L538",
+                "TextRotation": "0",
+                "AutoSize": true
+              },
+              {
+                "Type": "TextArea",
+                "Name": "ch4SensorText",
+                "X": 559,
+                "Y": 432,
+                "Width": 58,
+                "Height": 21,
+                "TextId": "__SingleUse_HPQR",
+                "TextRotation": "0",
+                "Color": {
+                  "Red": 255,
+                  "Green": 255
+                },
+                "AutoSize": true
+              },
+              {
+                "Type": "Box",
+                "Name": "ch4Box",
+                "X": 370,
+                "Y": 270,
+                "Width": 30,
+                "Height": 20,
+                "Color": {
+                  "Red": 255,
+                  "Green": 255
+                }
+              },
+              {
+                "Type": "TextArea",
+                "Name": "ch4GraphText",
+                "X": 370,
+                "Y": 270,
+                "Width": 30,
+                "Height": 21,
+                "TextId": "__SingleUse_QOVO",
+                "TextRotation": "0",
+                "AutoSize": true
+              }
+            ]
+          },
+          {
+            "Type": "Box",
+            "Name": "box2",
+            "X": 228,
+            "Y": 270,
+            "Width": 185,
+            "Height": 160,
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            }
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "changeBoxColorBtn",
+            "X": 270,
+            "Y": 435,
+            "Width": 100,
+            "Height": 36,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_36_tiny_rounded_pressed.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_36_tiny_rounded_normal.png",
+            "TextId": "__SingleUse_2XBY",
+            "ReleasedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0",
+            "Preset": "alternate_theme\\presets\\button\\regular\\height_36\\tiny_rounded_normal.json"
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "graphBtnClicked",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "graphBtn"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "graphBtnClicked"
+            }
+          },
+          {
+            "InteractionName": "addPointBtnClicked",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "addPointBtn"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "addPointBtnClicked"
+            }
+          },
+          {
+            "InteractionName": "changeScreen",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "changeScreenBtn"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionNone",
+              "ActionComponent": "Main"
+            }
+          },
+          {
+            "InteractionName": "sensorTextAlarm",
+            "Trigger": {
+              "Type": "TriggerOnEveryTick",
+              "TickCount": 20
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "sensorTextAlarm"
+            }
+          },
+          {
+            "InteractionName": "changeBoxColorBtnClicked",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "changeBoxColorBtn"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "changeBoxColorBtnClicked"
+            }
+          },
+          {
+            "InteractionName": "transStart",
+            "Trigger": {
+              "Type": "TriggerScreenTransitionBegins"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "transStart"
+            }
+          },
+          {
+            "InteractionName": "transEnd",
+            "Trigger": {
+              "Type": "TriggerScreenEntered"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "transEnd"
+            }
+          }
+        ]
+      }
+    ],
+    "CustomContainerDefinitions": [],
+    "Name": "MyApplication",
+    "Resolution": {
+      "Width": 640,
+      "Height": 480
+    },
+    "SelectedColorDepth": 16,
+    "StartupScreenName": "Main",
+    "SelectedStartupLanguage": "GB",
+    "TouchGfxPath": "../Middlewares/ST/touchgfx",
+    "UIPath": ".",
+    "AvailableColorDepths": [
+      16
+    ],
+    "AvailableLCDs": {
+      "16": "LCD16bpp"
+    },
+    "AvailableSections": [
+      "ExtFlashSection",
+      "IntFlashSection"
+    ],
+    "AvailableResolutions": [
+      {
+        "Width": 640,
+        "Height": 480
+      }
+    ],
+    "PhysicalButtons": [],
+    "FrameworkFeatures": {
+      "LCD16bpp": {
+        "Id": "LCD16bpp",
+        "IsEnabled": true
+      }
+    },
+    "GenerateAssetsCommand": "make -f simulator/gcc/Makefile assets -j8",
+    "PostGenerateCommand": "touchgfx update_project --project-file=simulator/msvs/Application.vcxproj",
+    "PostGenerateTargetCommand": "touchgfx update_project",
+    "CompileSimulatorCommand": "make -f simulator/gcc/Makefile -j8",
+    "RunSimulatorCommand": "build\\bin\\simulator.exe",
+    "LandscapeSkinX": 0,
+    "LandscapeSkinY": 0,
+    "PortraitSkinX": 0,
+    "PortraitSkinY": 0,
+    "DisplayOrientation": "Landscape",
+    "Family": "STM32H7",
+    "SubFamily": "STM32H743/753",
+    "Toolchain": "EWARM V8.50",
+    "Platform": "m7",
+    "ProjectFile": "../743_TouchGFX_NEW.ioc",
+    "OptionalComponentsRoot": "../Middlewares/ST/touchgfx_components",
+    "OptionalComponents": [],
+    "AdditionalFeatures": []
+  },
+  "Version": "4.21.1"
+}

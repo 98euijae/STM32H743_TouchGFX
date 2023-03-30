@@ -1,0 +1,31 @@
+
+{
+  "Application": {
+    "Name": "743_TouchGFX_NEW",
+    "TouchGfxPath": "../Middlewares/ST/touchgfx",
+    "AvailableColorDepths": [ 16 ],
+    "AvailableLCDs":
+    {
+      "16": "LCD16bpp"
+    },
+    "AvailableResolutions": [
+      {
+        "Width": 640,
+        "Height": 480
+      }
+    ],
+    "PostGenerateTargetCommand": "touchgfx update_project",
+    "Family": "STM32H7",
+    "SubFamily": "STM32H743/753",
+    "Platform": "m7",
+    "Toolchain": "EWARM V8.50",
+    "ProjectFile": "../743_TouchGFX_NEW.ioc",
+    "OptionalComponentsRoot": "../Middlewares/ST/touchgfx_components",
+    "OptionalComponents": [
+    ],
+    "AdditionalFeatures": [
+      "Vector"
+    ],
+  },
+  "Version": "4.21.1"
+}
