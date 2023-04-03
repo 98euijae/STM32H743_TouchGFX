@@ -183,12 +183,7 @@
             "Type": "Box",
             "Name": "box1",
             "Width": 640,
-            "Height": 480,
-            "Color": {
-              "Red": 120,
-              "Green": 207,
-              "Blue": 163
-            }
+            "Height": 480
           },
           {
             "Type": "ButtonWithLabel",
@@ -481,11 +476,9 @@
                 "Height": 180,
                 "DataSeed": 1158820142,
                 "NumberOfValues": 100,
-                "MaxX": 100.0,
-                "MinX": -100.0,
+                "MaxX": 600.0,
                 "PrecisionX": "1",
-                "MaxY": 100.0,
-                "MinY": -100.0,
+                "MaxY": 800.0,
                 "PrecisionY": "1",
                 "XAxisScale": 1.0,
                 "GraphDrawers": [
@@ -505,7 +498,7 @@
                     "Green": 255,
                     "Blue": 255
                   },
-                  "Interval": 100.0,
+                  "Interval": 300.0,
                   "LineWidth": 1
                 },
                 "MinorXAxisGrid": {
@@ -515,7 +508,7 @@
                     "Green": 255,
                     "Blue": 255
                   },
-                  "Interval": 20.0,
+                  "Interval": 50.0,
                   "LineWidth": 1,
                   "Alpha": 50
                 },
@@ -526,7 +519,7 @@
                     "Green": 255,
                     "Blue": 255
                   },
-                  "Interval": 100.0,
+                  "Interval": 400.0,
                   "LineWidth": 1
                 },
                 "MinorYAxisGrid": {
@@ -536,7 +529,7 @@
                     "Green": 255,
                     "Blue": 255
                   },
-                  "Interval": 20.0,
+                  "Interval": 50.0,
                   "LineWidth": 1,
                   "Alpha": 50
                 }

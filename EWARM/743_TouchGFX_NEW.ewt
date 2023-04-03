@@ -1518,6 +1518,9 @@
                 <name>$PROJ_DIR$\..\Drivers\BSP\stm32h743i_eval_io.c</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\..\Drivers\BSP\stm32h743i_eval_sd.c</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\Drivers\BSP\stm32h743i_eval_ts.c</name>
             </file>
         </group>
@@ -1593,6 +1596,12 @@
                 <name>$PROJ_DIR$\..\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_rcc_ex.c</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\..\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_sd.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_sd_ex.c</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_sdram.c</name>
             </file>
             <file>
@@ -1602,12 +1611,39 @@
                 <name>$PROJ_DIR$\..\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_tim_ex.c</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\..\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_delayblock.c</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_fmc.c</name>
             </file>
+            <file>
+                <name>$PROJ_DIR$\..\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_sdmmc.c</name>
+            </file>
         </group>
+        <file>
+            <name>$PROJ_DIR$\..\Core\Src\sd_diskio.c</name>
+        </file>
     </group>
     <group>
         <name>Middlewares</name>
+        <group>
+            <name>FatFs</name>
+            <file>
+                <name>$PROJ_DIR$\..\Middlewares\Third_Party\FatFs\src\diskio.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Middlewares\Third_Party\FatFs\src\ff.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Middlewares\Third_Party\FatFs\src\ff_gen_drv.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Middlewares\Third_Party\FatFs\src\option\syscall.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Middlewares\Third_Party\FatFs\src\option\unicode.c</name>
+            </file>
+        </group>
         <group>
             <name>FreeRTOS</name>
             <file>

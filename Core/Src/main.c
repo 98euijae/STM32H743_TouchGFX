@@ -19,11 +19,13 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "cmsis_os.h"
-#include "fatfs.h"
 #include "app_touchgfx.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "ff_gen_drv.h"
+#include "sd_diskio.h"
+#include "stm32h743i_eval_sd.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -80,14 +82,26 @@ const osThreadAttr_t defaultTask_attributes = {
 osThreadId_t GUI_TaskHandle;
 const osThreadAttr_t GUI_Task_attributes = {
     .name = "GUI_Task",
-    .stack_size = 2048 * 4,
+    .stack_size = 4096 * 4,
     .priority = (osPriority_t) osPriorityNormal,
+};
+/* Definitions for ReadSDData */
+osThreadId_t ReadSDDataHandle;
+const osThreadAttr_t ReadSDData_attributes = {
+    .name = "ReadSDData",
+    .stack_size = 1024 * 4,
+    .priority = (osPriority_t) osPriorityLow,
 };
 /* USER CODE BEGIN PV */
 FMC_SDRAM_CommandTypeDef command;
 uint32_t TIMStart = 0;
 uint32_t TIMEnd = 0;
 int g_iTaskCnt = 0;
+FATFS SDFatFs;
+FIL MyFile;
+char SDPath[4];
+int dataX[100];
+int dataY[100];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -99,12 +113,14 @@ static void MX_LTDC_Init(void);
 static void MX_CRC_Init(void);
 static void MX_I2C1_Init(void);
 static void MX_TIM2_Init(void);
-static void MX_SDMMC1_SD_Init(void);
+//static void MX_SDMMC1_SD_Init(void);
 void StartDefaultTask(void *argument);
 void TouchGFX_Task(void *argument);
+void ReadSDDataTask(void *argument);
 
 /* USER CODE BEGIN PFP */
 static void SDRAM_Initialization_Sequence(SDRAM_HandleTypeDef *hsdram, FMC_SDRAM_CommandTypeDef *Command);
+static void SD_Initialization();
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -143,13 +159,12 @@ int main(void)
     MX_CRC_Init();
     MX_I2C1_Init();
     MX_TIM2_Init();
-    MX_SDMMC1_SD_Init();
-    MX_FATFS_Init();
+//    MX_SDMMC1_SD_Init();
+    SD_Initialization();
     MX_TouchGFX_Init();
     /* Call PreOsInit function */
     MX_TouchGFX_PreOSInit();
     /* USER CODE BEGIN 2 */
-    BSP_SD_Init();
     HAL_TIM_Base_Start(&htim2);
     /* USER CODE END 2 */
     
@@ -178,6 +193,9 @@ int main(void)
     
     /* creation of GUI_Task */
     GUI_TaskHandle = osThreadNew(TouchGFX_Task, NULL, &GUI_Task_attributes);
+    
+    /* creation of ReadSDData */
+    ReadSDDataHandle = osThreadNew(ReadSDDataTask, NULL, &ReadSDData_attributes);
     
     /* USER CODE BEGIN RTOS_THREADS */
     /* add threads, ... */
@@ -227,12 +245,12 @@ void SystemClock_Config(void)
     RCC_OscInitStruct.HSEState = RCC_HSE_ON;
     RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
     RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-    RCC_OscInitStruct.PLL.PLLM = 5;
-    RCC_OscInitStruct.PLL.PLLN = 160;
+    RCC_OscInitStruct.PLL.PLLM = 25;
+    RCC_OscInitStruct.PLL.PLLN = 400;
     RCC_OscInitStruct.PLL.PLLP = 2;
     RCC_OscInitStruct.PLL.PLLQ = 4;
     RCC_OscInitStruct.PLL.PLLR = 2;
-    RCC_OscInitStruct.PLL.PLLRGE = RCC_PLL1VCIRANGE_2;
+    RCC_OscInitStruct.PLL.PLLRGE = RCC_PLL1VCIRANGE_0;
     RCC_OscInitStruct.PLL.PLLVCOSEL = RCC_PLL1VCOWIDE;
     RCC_OscInitStruct.PLL.PLLFRACN = 0;
     if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
@@ -247,7 +265,7 @@ void SystemClock_Config(void)
             |RCC_CLOCKTYPE_D3PCLK1|RCC_CLOCKTYPE_D1PCLK1;
     RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
     RCC_ClkInitStruct.SYSCLKDivider = RCC_SYSCLK_DIV1;
-    RCC_ClkInitStruct.AHBCLKDivider = RCC_HCLK_DIV2;
+    RCC_ClkInitStruct.AHBCLKDivider = RCC_HCLK_DIV1;
     RCC_ClkInitStruct.APB3CLKDivider = RCC_APB3_DIV2;
     RCC_ClkInitStruct.APB1CLKDivider = RCC_APB1_DIV2;
     RCC_ClkInitStruct.APB2CLKDivider = RCC_APB2_DIV2;
@@ -306,10 +324,21 @@ static void MX_DMA2D_Init(void)
     
     /* USER CODE END DMA2D_Init 1 */
     hdma2d.Instance = DMA2D;
-    hdma2d.Init.Mode = DMA2D_R2M;
+    hdma2d.Init.Mode = DMA2D_M2M;
     hdma2d.Init.ColorMode = DMA2D_OUTPUT_RGB565;
     hdma2d.Init.OutputOffset = 0;
+    hdma2d.LayerCfg[1].InputOffset = 0;
+    hdma2d.LayerCfg[1].InputColorMode = DMA2D_INPUT_RGB565;
+    hdma2d.LayerCfg[1].AlphaMode = DMA2D_NO_MODIF_ALPHA;
+    hdma2d.LayerCfg[1].InputAlpha = 0;
+    hdma2d.LayerCfg[1].AlphaInverted = DMA2D_REGULAR_ALPHA;
+    hdma2d.LayerCfg[1].RedBlueSwap = DMA2D_RB_REGULAR;
+    hdma2d.LayerCfg[1].ChromaSubSampling = DMA2D_NO_CSS;
     if (HAL_DMA2D_Init(&hdma2d) != HAL_OK)
+    {
+        Error_Handler();
+    }
+    if (HAL_DMA2D_ConfigLayer(&hdma2d, 1) != HAL_OK)
     {
         Error_Handler();
     }
@@ -434,27 +463,31 @@ static void MX_LTDC_Init(void)
 * @param None
 * @retval None
 */
-static void MX_SDMMC1_SD_Init(void)
-{
-    
-    /* USER CODE BEGIN SDMMC1_Init 0 */
-    
-    /* USER CODE END SDMMC1_Init 0 */
-    
-    /* USER CODE BEGIN SDMMC1_Init 1 */
-    
-    /* USER CODE END SDMMC1_Init 1 */
-    hsd1.Instance = SDMMC1;
-    hsd1.Init.ClockEdge = SDMMC_CLOCK_EDGE_RISING;
-    hsd1.Init.ClockPowerSave = SDMMC_CLOCK_POWER_SAVE_DISABLE;
-    hsd1.Init.BusWide = SDMMC_BUS_WIDE_4B;
-    hsd1.Init.HardwareFlowControl = SDMMC_HARDWARE_FLOW_CONTROL_DISABLE;
-    hsd1.Init.ClockDiv = 0;
-    /* USER CODE BEGIN SDMMC1_Init 2 */
-    
-    /* USER CODE END SDMMC1_Init 2 */
-    
-}
+//static void MX_SDMMC1_SD_Init(void)
+//{
+//    
+//    /* USER CODE BEGIN SDMMC1_Init 0 */
+//    //    //    
+//    /* USER CODE END SDMMC1_Init 0 */
+//    
+//    /* USER CODE BEGIN SDMMC1_Init 1 */
+//    //    //    
+//    /* USER CODE END SDMMC1_Init 1 */
+//    hsd1.Instance = SDMMC1;
+//    hsd1.Init.ClockEdge = SDMMC_CLOCK_EDGE_RISING;
+//    hsd1.Init.ClockPowerSave = SDMMC_CLOCK_POWER_SAVE_DISABLE;
+//    hsd1.Init.BusWide = SDMMC_BUS_WIDE_4B;
+//    hsd1.Init.HardwareFlowControl = SDMMC_HARDWARE_FLOW_CONTROL_DISABLE;
+//    hsd1.Init.ClockDiv = 0;
+//    if (HAL_SD_Init(&hsd1) != HAL_OK)
+//    {
+//        Error_Handler();
+//    }
+//    /* USER CODE BEGIN SDMMC1_Init 2 */
+//    //    //    
+//    /* USER CODE END SDMMC1_Init 2 */
+//    
+//}
 
 /**
 * @brief TIM2 Initialization Function
@@ -555,7 +588,6 @@ static void MX_FMC_Init(void)
 */
 static void MX_GPIO_Init(void)
 {
-    GPIO_InitTypeDef GPIO_InitStruct = {0};
     /* USER CODE BEGIN MX_GPIO_Init_1 */
     /* USER CODE END MX_GPIO_Init_1 */
     
@@ -570,12 +602,6 @@ static void MX_GPIO_Init(void)
     __HAL_RCC_GPIOG_CLK_ENABLE();
     __HAL_RCC_GPIOD_CLK_ENABLE();
     __HAL_RCC_GPIOF_CLK_ENABLE();
-    
-    /*Configure GPIO pin : PB15 */
-    GPIO_InitStruct.Pin = GPIO_PIN_15;
-    GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
     
     /* USER CODE BEGIN MX_GPIO_Init_2 */
     /* USER CODE END MX_GPIO_Init_2 */
@@ -636,6 +662,24 @@ static void SDRAM_Initialization_Sequence(SDRAM_HandleTypeDef *hsdram, FMC_SDRAM
     HAL_SDRAM_ProgramRefreshRate(hsdram, REFRESH_COUNT); 
     
 }
+
+static void SD_Initialization()
+{
+    if(FATFS_LinkDriver(&SD_Driver, SDPath) == 0)
+    {
+        BSP_SD_Init(0);
+        HAL_NVIC_SetPriority(SysTick_IRQn, 0x0E, 0);
+        
+        if(BSP_SD_IsDetected(0))
+        {
+            if(f_mount(&SDFatFs, (TCHAR const*)SDPath, 0) == FR_OK)
+            {
+                
+            }
+        }
+    }
+}
+
 /* USER CODE END 4 */
 
 /* USER CODE BEGIN Header_StartDefaultTask */
@@ -672,6 +716,68 @@ __weak void TouchGFX_Task(void *argument)
         osDelay(1);
     }
     /* USER CODE END TouchGFX_Task */
+}
+
+/* USER CODE BEGIN Header_ReadSDDataTask */
+/**
+* @brief Function implementing the ReadSDData thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_ReadSDDataTask */
+void ReadSDDataTask(void *argument)
+{
+    /* USER CODE BEGIN ReadSDDataTask */
+    int fileOpenedFlag = 0;
+    uint8_t readData;
+    int dataCnt = 0;
+    int dataFlag = 0;
+    /* Infinite loop */
+    for(;;)
+    {
+        if(fileOpenedFlag == 0)
+        {
+            if(f_open(&MyFile, "sim_data_conv.txt", FA_READ) == FR_OK)
+            {
+                fileOpenedFlag = 1;
+            }
+        }
+        if(fileOpenedFlag == 1)
+        {
+            while(dataCnt != 100)
+            {
+                if(f_read(&MyFile, &readData, sizeof(readData), NULL) == FR_OK)
+                {
+                    if(readData >= 0x30 && readData <= 0x39)
+                    {
+                        if(dataFlag == 0)
+                            dataX[dataCnt] = (dataX[dataCnt] * 10) + (int)(readData - 0x30);
+                        else
+                            dataY[dataCnt] = (dataY[dataCnt] * 10) + (int)(readData - 0x30);                                             
+                    }
+                    else if(readData == 0x09 || readData == 0x0A)
+                    {
+                        if(dataFlag == 0)
+                            dataFlag = 1;
+                        else
+                        {
+                            dataFlag = 0;
+                            dataCnt++;
+                        }
+                    }
+                }
+                if(f_eof(&MyFile))
+                {
+                    f_close(&MyFile);
+                    fileOpenedFlag = 0;
+                    break;
+                }
+            }
+        }
+        
+        osDelay(1);
+    }
+    /* USER CODE END ReadSDDataTask */
 }
 
 /**

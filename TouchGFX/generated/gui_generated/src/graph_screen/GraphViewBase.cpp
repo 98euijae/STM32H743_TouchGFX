@@ -18,7 +18,7 @@ GraphViewBase::GraphViewBase() :
     add(__background);
 
     box1.setPosition(0, 0, 640, 480);
-    box1.setColor(touchgfx::Color::getColorFromRGB(120, 207, 163));
+    box1.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     add(box1);
 
     graphBtn.setXY(95, 222);
@@ -178,10 +178,10 @@ GraphViewBase::GraphViewBase() :
     ch1Graph.setScaleY(1);
     ch1Graph.setGraphAreaMargin(0, 0, 0, 0);
     ch1Graph.setGraphAreaPadding(0, 0, 0, 0);
-    ch1Graph.setGraphRangeX(-100, 100);
-    ch1Graph.setGraphRangeY(-100, 100);
+    ch1Graph.setGraphRangeX(0, 600);
+    ch1Graph.setGraphRangeY(0, 800);
     ch1GraphMinorXAxisGrid.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    ch1GraphMinorXAxisGrid.setInterval(20);
+    ch1GraphMinorXAxisGrid.setInterval(50);
     ch1GraphMinorXAxisGrid.setLineWidth(1);
     ch1GraphMinorXAxisGrid.setAlpha(50);
     ch1GraphMinorXAxisGrid.setScale(1);
@@ -189,7 +189,7 @@ GraphViewBase::GraphViewBase() :
     ch1Graph.addGraphElement(ch1GraphMinorXAxisGrid);
 
     ch1GraphMinorYAxisGrid.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    ch1GraphMinorYAxisGrid.setInterval(20);
+    ch1GraphMinorYAxisGrid.setInterval(50);
     ch1GraphMinorYAxisGrid.setLineWidth(1);
     ch1GraphMinorYAxisGrid.setAlpha(50);
     ch1GraphMinorYAxisGrid.setScale(1);
@@ -197,13 +197,13 @@ GraphViewBase::GraphViewBase() :
     ch1Graph.addGraphElement(ch1GraphMinorYAxisGrid);
 
     ch1GraphMajorXAxisGrid.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    ch1GraphMajorXAxisGrid.setInterval(100);
+    ch1GraphMajorXAxisGrid.setInterval(300);
     ch1GraphMajorXAxisGrid.setLineWidth(1);
     ch1GraphMajorXAxisGrid.setScale(1);
     ch1Graph.addGraphElement(ch1GraphMajorXAxisGrid);
 
     ch1GraphMajorYAxisGrid.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
-    ch1GraphMajorYAxisGrid.setInterval(100);
+    ch1GraphMajorYAxisGrid.setInterval(400);
     ch1GraphMajorYAxisGrid.setLineWidth(1);
     ch1GraphMajorYAxisGrid.setScale(1);
     ch1Graph.addGraphElement(ch1GraphMajorYAxisGrid);

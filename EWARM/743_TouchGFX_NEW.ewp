@@ -365,8 +365,6 @@
           <state>$PROJ_DIR$/../Drivers/BSP/Components/exc7200</state>
           <state>$PROJ_DIR$/../Drivers/BSP/Components/mfxstm32l152</state>
           <state>$PROJ_DIR$/../Drivers/BSP/Components/ts3510</state>
-          <state>$PROJ_DIR$/../FATFS/Target</state>
-          <state>$PROJ_DIR$/../FATFS/App</state>
           <state>$PROJ_DIR$/../Middlewares/Third_Party/FatFs/src</state>
         </option>
         <option>
@@ -1152,27 +1150,6 @@
           </file>
         </group>
       </group>
-      <group>
-        <name>FATFS</name>
-        <group>
-          <name>Target</name>
-          <file>
-            <name>$PROJ_DIR$/../FATFS/Target/bsp_driver_sd.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$/../FATFS/Target/sd_diskio.c</name>
-          </file>
-          <file>
-            <name>$PROJ_DIR$/../FATFS/Target/fatfs_platform.c</name>
-          </file>
-        </group>
-        <group>
-          <name>App</name>
-          <file>
-            <name>$PROJ_DIR$/../FATFS/App/fatfs.c</name>
-          </file>
-        </group>
-      </group>
     </group>
   </group>
   <group>
@@ -1205,6 +1182,9 @@
       </file>
       <file>
         <name>$PROJ_DIR$\..\Drivers\BSP\stm32h743i_eval_io.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\Drivers\BSP\stm32h743i_eval_sd.c</name>
       </file>
       <file>
         <name>$PROJ_DIR$\..\Drivers\BSP\stm32h743i_eval_ts.c</name>
@@ -1288,16 +1268,16 @@
         <name>$PROJ_DIR$\..\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_ltdc_ex.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$/../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c</name>
+        <name>$PROJ_DIR$\..\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_sdmmc.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$/../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_delayblock.c</name>
+        <name>$PROJ_DIR$\..\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_ll_delayblock.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$/../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c</name>
+        <name>$PROJ_DIR$\..\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_sd.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$/../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd_ex.c</name>
+        <name>$PROJ_DIR$\..\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_sd_ex.c</name>
       </file>
       <file>
         <name>$PROJ_DIR$\..\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_tim.c</name>
@@ -1306,9 +1286,30 @@
         <name>$PROJ_DIR$\..\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_tim_ex.c</name>
       </file>
     </group>
+    <file>
+      <name>$PROJ_DIR$\..\Core\Src\sd_diskio.c</name>
+    </file>
   </group>
   <group>
     <name>Middlewares</name>
+    <group>
+      <name>FatFs</name>
+      <file>
+        <name>$PROJ_DIR$\..\Middlewares\Third_Party\FatFs\src\diskio.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\Middlewares\Third_Party\FatFs\src\ff.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\Middlewares\Third_Party\FatFs\src\ff_gen_drv.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\Middlewares\Third_Party\FatFs\src\option\syscall.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\Middlewares\Third_Party\FatFs\src\option\unicode.c</name>
+      </file>
+    </group>
     <group>
       <name>FreeRTOS</name>
       <file>
@@ -1343,21 +1344,6 @@
       </file>
       <file>
         <name>$PROJ_DIR$\..\Middlewares\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM4F\portasm.s</name>
-      </file>
-    </group>
-    <group>
-      <name>FatFs</name>
-      <file>
-        <name>$PROJ_DIR$/../Middlewares/Third_Party/FatFs/src/diskio.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Middlewares/Third_Party/FatFs/src/ff.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Middlewares/Third_Party/FatFs/src/ff_gen_drv.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Middlewares/Third_Party/FatFs/src/option/syscall.c</name>
       </file>
     </group>
   </group>

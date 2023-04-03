@@ -21,18 +21,6 @@
 #include <gui/common/FrontendHeap.hpp>
 #include <touchgfx/hal/GPIO.hpp>
 
-#include <touchgfx/widgets/canvas/CWRVectorRenderer.hpp>
-
-namespace touchgfx
-{
-VectorRenderer* VectorRenderer::getInstance()
-{
-    static CWRVectorRendererRGB565 renderer;
-
-    return &renderer;
-}
-} // namespace touchgfx
-
 #include "stm32h7xx.h"
 #include "stm32h7xx_hal_ltdc.h"
 

@@ -2,17 +2,20 @@
 #include <texts/TextKeysAndLanguages.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 #include <stdlib.h>
+#include <time.h>
 #include "main.h"
 #include "stm32h7xx_hal_tim.h"
 
 extern uint32_t TIMStart;
 extern uint32_t TIMEnd;
 extern TIM_HandleTypeDef htim2;
+extern int dataX[100];
+extern int dataY[100];
 double d_tim;
 
 GraphView::GraphView()
 {
-    srand(osKernelGetTickCount());
+    srand(time(NULL));
     m_iGraphVisible = 1;
     m_iSensorFlag = 1;
 }
@@ -50,19 +53,24 @@ void GraphView::graphBtnClicked()
 
 void GraphView::addPointBtnClicked()
 {
-    int randomX[4];
-    int randomY[4];
-    
-    for(int i = 0; i < 4; i++)
+//    srand(time(NULL));
+//    int randomX[4];
+//    int randomY[4];
+//    
+//    for(int i = 0; i < 4; i++)
+//    {
+//        randomX[i] = rand() % 200 - 100;
+//        randomY[i] = rand() % 200 - 100;
+//    }
+//    
+//    ch1Graph.addDataPointScaled(randomX[0], randomY[0]);
+//    ch2Graph.addDataPointScaled(randomX[1], randomY[1]);
+//    ch3Graph.addDataPointScaled(randomX[2], randomY[2]);
+//    ch4Graph.addDataPointScaled(randomX[3], randomY[3]);
+    for(int i = 0; i < 30; i++)
     {
-        randomX[i] = rand() % 200 - 100;
-        randomY[i] = rand() % 200 - 100;
+        ch1Graph.addDataPointScaled(dataX[i], dataY[i]);
     }
-    
-    ch1Graph.addDataPointScaled(randomX[0], randomY[0]);
-    ch2Graph.addDataPointScaled(randomX[1], randomY[1]);
-    ch3Graph.addDataPointScaled(randomX[2], randomY[2]);
-    ch4Graph.addDataPointScaled(randomX[3], randomY[3]);
 }
 
 void GraphView::sensorTextAlarm()
