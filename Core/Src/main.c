@@ -495,11 +495,11 @@ static void MX_LTDC_Init(void)
 //{
 //    
 //    /* USER CODE BEGIN SDMMC1_Init 0 */
-//    //    //    //    //    //    
+//    //    //    //    //    //    //    //    
 //    /* USER CODE END SDMMC1_Init 0 */
 //    
 //    /* USER CODE BEGIN SDMMC1_Init 1 */
-//    //    //    //    //    //    
+//    //    //    //    //    //    //    //    
 //    /* USER CODE END SDMMC1_Init 1 */
 //    hsd1.Instance = SDMMC1;
 //    hsd1.Init.ClockEdge = SDMMC_CLOCK_EDGE_RISING;
@@ -513,7 +513,7 @@ static void MX_LTDC_Init(void)
 //        Error_Handler();
 //    }
 //    /* USER CODE BEGIN SDMMC1_Init 2 */
-//    //    //    //    //    //    
+//    //    //    //    //    //    //    //    
 //    /* USER CODE END SDMMC1_Init 2 */
 //    
 //}
@@ -841,7 +841,7 @@ void ReadSDDataTask(void *argument)
             dataCnt = 0;
         }
         osMessageQueuePut(SDQueueHandle, &data, 0, 0);
-        osDelay(50);
+        osDelay(1);
     }
     /* USER CODE END ReadSDDataTask */
 }

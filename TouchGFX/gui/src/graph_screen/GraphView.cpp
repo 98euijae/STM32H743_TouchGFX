@@ -44,6 +44,7 @@ void GraphView::setGraph(int dataX[DATA_SIZE], int dataY[DATA_SIZE], int dataCnt
 //    CH1graph.invalidate();
     uint32_t start = osKernelGetTickCount();
     uint32_t end;
+    
     for(int i = 0; i < dataCnt; i++)
     {
         CH1graph.addCircle(dataX[i], dataY[i], CH1graph.getX(), CH1graph.getY());

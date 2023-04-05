@@ -59,7 +59,7 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 
 /* USER CODE BEGIN Private defines */
-#define DATA_SIZE 200
+#define DATA_SIZE 5
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

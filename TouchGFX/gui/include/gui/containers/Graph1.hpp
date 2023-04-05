@@ -16,6 +16,7 @@ protected:
     int circleCnt;
     int prevX;
     int prevY;
+    int lineCnt;
 };
 
 #endif // GRAPH1_HPP

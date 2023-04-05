@@ -8,8 +8,9 @@
 #include <mvp/View.hpp>
 #include <gui/graph_screen/GraphPresenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
-#include <gui/containers/Graph1.hpp>
 #include <touchgfx/widgets/Button.hpp>
+#include <touchgfx/containers/Container.hpp>
+#include <gui/containers/Graph1.hpp>
 
 class GraphViewBase : public touchgfx::View<GraphPresenter>
 {
@@ -37,11 +38,12 @@ protected:
      */
     touchgfx::Box __background;
     touchgfx::Box bg;
-    Graph1 CH1graph;
     touchgfx::Button button1;
-    Graph1 CH2graph;
-    Graph1 CH3graph;
+    touchgfx::Container graphContainer;
     Graph1 CH4graph;
+    Graph1 CH3graph;
+    Graph1 CH2graph;
+    Graph1 CH1graph;
 
 private:
 

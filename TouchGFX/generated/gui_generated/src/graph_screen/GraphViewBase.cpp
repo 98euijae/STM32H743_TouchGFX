@@ -20,22 +20,25 @@ GraphViewBase::GraphViewBase() :
     bg.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     add(bg);
 
-    CH1graph.setXY(0, 56);
-    add(CH1graph);
-
     button1.setXY(0, 0);
     button1.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_MEDIUM_ROUNDED_NORMAL_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_REGULAR_HEIGHT_50_MEDIUM_ROUNDED_PRESSED_ID));
     button1.setAction(buttonCallback);
     add(button1);
 
-    CH2graph.setXY(320, 56);
-    add(CH2graph);
+    graphContainer.setPosition(0, 56, 640, 424);
+    CH4graph.setXY(320, 214);
+    graphContainer.add(CH4graph);
 
-    CH3graph.setXY(0, 270);
-    add(CH3graph);
+    CH3graph.setXY(0, 214);
+    graphContainer.add(CH3graph);
 
-    CH4graph.setXY(320, 270);
-    add(CH4graph);
+    CH2graph.setXY(320, 0);
+    graphContainer.add(CH2graph);
+
+    CH1graph.setXY(0, 0);
+    graphContainer.add(CH1graph);
+
+    add(graphContainer);
 }
 
 GraphViewBase::~GraphViewBase()
@@ -45,10 +48,10 @@ GraphViewBase::~GraphViewBase()
 
 void GraphViewBase::setupScreen()
 {
-    CH1graph.initialize();
-    CH2graph.initialize();
-    CH3graph.initialize();
     CH4graph.initialize();
+    CH3graph.initialize();
+    CH2graph.initialize();
+    CH1graph.initialize();
 }
 
 void GraphViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)

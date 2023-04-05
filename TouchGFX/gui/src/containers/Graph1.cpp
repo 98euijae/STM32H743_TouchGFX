@@ -9,6 +9,7 @@ Graph1::Graph1()
     circleCnt = 0;
     prevX = 0;
     prevY = 0;
+    lineCnt = 0;
 }
 
 void Graph1::initialize()
@@ -49,19 +50,19 @@ void Graph1::addCircle(int x, int y, int centerX, int centerY)
     linePainter.setColor(touchgfx::Color::getColorFromRGB(255, 0, 0));
     newX = (int)round((double)x / 3000.0f * ((double)Graph1().getWidth() / 2)) + (Graph1().getWidth() / 2) + centerX;
     newY = (int)round((double)y / 3000.0f * ((double)Graph1().getHeight() / 2)) + (Graph1().getHeight() / 2) + centerY;
-//    if(circleCnt > 1)
-//    {        
-//        newLine.setStart(0, 0);
-//        newLine.setEnd(x / 2 - prevX, y / 2);
-//        newLine.setPosition(prevX, prevY, x / 2, y / 2);
-//        newLine.setPainter(linePainter);
-//        newLine.setLineWidth(1);
-//        newLine.setLineEndingStyle(touchgfx::Line::SQUARE_CAP_ENDING);
-//    
-//        Rect newRect = Rect(prevX - 2, prevY - 2, x / 2 + 2, y / 2 + 2);
-//        newLine.draw(newRect);
-//        newLine.invalidate();
-//    }
+    if(circleCnt > 1)
+    {        
+        newLine.setStart(0, 0);
+        newLine.setEnd(x / 2 - prevX, y / 2);
+        newLine.setPosition(prevX, prevY, x / 2, y / 2);
+        newLine.setPainter(linePainter);
+        newLine.setLineWidth(1);
+        newLine.setLineEndingStyle(touchgfx::Line::SQUARE_CAP_ENDING);
+    
+        Rect newRect = Rect(prevX - 2, prevY - 2, x / 2 + 2, y / 2 + 2);
+        newLine.draw(newRect);
+        newLine.invalidate();
+    }
     
     if(circleCnt > 1)
     {
@@ -101,11 +102,11 @@ void Graph1::addCircle(int x, int y, int centerX, int centerY)
         newLine.setLineEndingStyle(touchgfx::Line::SQUARE_CAP_ENDING);
         
         Rect newRect = newLine.getMinimalRect();
-        newLine.draw(newRect);
+//        newLine.draw(newRect);
         
+        newLine.invalidate();
         
     }
-    
     
     
     prevX = newX;

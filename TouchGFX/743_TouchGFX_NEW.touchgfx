@@ -187,14 +187,6 @@
             "Height": 480
           },
           {
-            "Type": "CustomContainerInstance",
-            "Name": "CH1graph",
-            "Y": 56,
-            "Width": 320,
-            "Height": 210,
-            "CustomContainerDefinitionName": "Graph1"
-          },
-          {
             "Type": "Button",
             "Name": "button1",
             "Width": 240,
@@ -204,30 +196,45 @@
             "Preset": "alternate_theme\\presets\\button\\regular\\height_50\\medium_rounded_normal.json"
           },
           {
-            "Type": "CustomContainerInstance",
-            "Name": "CH2graph",
-            "X": 320,
+            "Type": "Container",
+            "Name": "graphContainer",
             "Y": 56,
-            "Width": 320,
-            "Height": 210,
-            "CustomContainerDefinitionName": "Graph1"
-          },
-          {
-            "Type": "CustomContainerInstance",
-            "Name": "CH3graph",
-            "Y": 270,
-            "Width": 320,
-            "Height": 210,
-            "CustomContainerDefinitionName": "Graph1"
-          },
-          {
-            "Type": "CustomContainerInstance",
-            "Name": "CH4graph",
-            "X": 320,
-            "Y": 270,
-            "Width": 320,
-            "Height": 210,
-            "CustomContainerDefinitionName": "Graph1"
+            "Width": 640,
+            "Height": 424,
+            "Components": [
+              {
+                "Type": "CustomContainerInstance",
+                "Name": "CH4graph",
+                "X": 320,
+                "Y": 214,
+                "Width": 320,
+                "Height": 210,
+                "CustomContainerDefinitionName": "Graph1"
+              },
+              {
+                "Type": "CustomContainerInstance",
+                "Name": "CH3graph",
+                "Y": 214,
+                "Width": 320,
+                "Height": 210,
+                "CustomContainerDefinitionName": "Graph1"
+              },
+              {
+                "Type": "CustomContainerInstance",
+                "Name": "CH2graph",
+                "X": 320,
+                "Width": 320,
+                "Height": 210,
+                "CustomContainerDefinitionName": "Graph1"
+              },
+              {
+                "Type": "CustomContainerInstance",
+                "Name": "CH1graph",
+                "Width": 320,
+                "Height": 210,
+                "CustomContainerDefinitionName": "Graph1"
+              }
+            ]
           }
         ],
         "Interactions": [
