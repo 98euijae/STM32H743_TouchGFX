@@ -3,6 +3,7 @@
 
 #include <gui_generated/graph_screen/GraphViewBase.hpp>
 #include <gui/graph_screen/GraphPresenter.hpp>
+#include <main.h>
 
 class GraphView : public GraphViewBase
 {
@@ -11,15 +12,10 @@ public:
     virtual ~GraphView() {}
     virtual void setupScreen();
     virtual void tearDownScreen();
-    virtual void graphBtnClicked();
-    virtual void addPointBtnClicked();
-    virtual void sensorTextAlarm();
-    virtual void changeBoxColorBtnClicked();
-    virtual void transStart();
-    virtual void transEnd();
+    void setGraph(int dataX[DATA_SIZE], int dataY[DATA_SIZE], int dataCnt);
+    virtual void sensorAlarmFunc();
 protected:
-    int m_iGraphVisible;
-    int m_iSensorFlag;
+    bool sensorFlag;
 };
 
 #endif // GRAPHVIEW_HPP

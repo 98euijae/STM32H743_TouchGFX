@@ -16,3 +16,8 @@ void GraphPresenter::deactivate()
 {
 
 }
+
+void GraphPresenter::graphChanged()
+{
+    view.setGraph(model->getDataX(), model->getDataY(), model->getReadSize());
+}

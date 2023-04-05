@@ -6,38 +6,35 @@ FONT_TABLE_LOCATION_FLASH_PRAGMA
 KEEP extern const touchgfx::GlyphNode glyphs_SCDream6_otf_15_4bpp[] FONT_TABLE_LOCATION_FLASH_ATTRIBUTE = {
     {     0, 0x0020,   0,   0,   0,   0,   4,   0,   0, 0x00 }, // _1
     {     0, 0x0031,   6,  12,  12,   1,   9,   0,   0, 0x00 }, // _18
-    {    36, 0x0032,   9,  12,  12,   0,   9,   0,   0, 0x00 }, // _19
-    {    96, 0x0033,   9,  12,  12,   0,   9,   0,   0, 0x00 }, // _20
-    {   156, 0x0034,   9,  12,  12,   0,   9,   0,   0, 0x00 }, // _21
-    {   216, 0x003F,   8,  12,  12,   0,   9,   0,   0, 0x00 }, // _32
-    {   264, 0x0041,  11,  12,  12,   0,  10,   0,   0, 0x00 }, // _34
-    {   336, 0x0042,  10,  12,  12,   0,  10,   0,   0, 0x00 }, // _35
-    {   396, 0x0043,  10,  12,  12,   0,  11,   0,   0, 0x00 }, // _36
-    {   456, 0x0047,  10,  12,  12,   0,  11,   0,   0, 0x00 }, // _40
-    {   516, 0x0048,  10,  12,  12,   0,  10,   0,   0, 0x00 }, // _41
-    {   576, 0x004D,  13,  12,  12,   0,  14,   0,   0, 0x00 }, // _46
-    {   660, 0x004F,  11,  12,  12,   0,  11,   0,   0, 0x00 }, // _48
-    {   732, 0x0050,  10,  12,  12,   0,  10,   0,   0, 0x00 }, // _49
-    {   792, 0x0053,   9,  12,  12,   0,  10,   0,   0, 0x00 }, // _52
-    {   852, 0x0061,   9,   9,   9,   0,   9,   0,   0, 0x00 }, // _66
-    {   897, 0x0063,   8,   9,   9,   0,   9,   0,   0, 0x00 }, // _68
-    {   933, 0x0064,   9,  12,  12,   0,   9,   0,   0, 0x00 }, // _69
-    {   993, 0x0065,   9,   9,   9,   0,   9,   0,   0, 0x00 }, // _70
-    {  1038, 0x0066,   6,  12,  12,   0,   6,   0,   0, 0x00 }, // _71
-    {  1074, 0x0067,   9,  13,   9,   0,   9,   0,   0, 0x00 }, // _72
-    {  1139, 0x0068,   9,  12,  12,   0,   9,   0,   0, 0x00 }, // _73
-    {  1199, 0x0069,   3,  12,  12,   0,   4,   0,   0, 0x00 }, // _74
-    {  1223, 0x006C,   3,  12,  12,   0,   4,   0,   0, 0x00 }, // _77
-    {  1247, 0x006E,   9,   9,   9,   0,   9,   0,   0, 0x00 }, // _79
-    {  1292, 0x006F,   9,   9,   9,   0,   9,   0,   0, 0x00 }, // _80
-    {  1337, 0x0070,   9,  12,   9,   0,   9,   0,   0, 0x00 }, // _81
-    {  1397, 0x0072,   6,   9,   9,   0,   6,   0,   0, 0x00 }, // _83
-    {  1424, 0x0074,   6,  11,  11,   0,   6,   0,   0, 0x00 }, // _85
-    {  1457, 0x0076,   9,   9,   9,   0,   9,   0,   0, 0x00 }, // _87
-    {     0, 0xB78C,  14,  15,  13,   1,  14,   0,   0, 0x00 }, // _1736
+    {    36, 0x003F,   8,  12,  12,   0,   9,   0,   0, 0x00 }, // _32
+    {    84, 0x0041,  11,  12,  12,   0,  10,   0,   0, 0x00 }, // _34
+    {   156, 0x0042,  10,  12,  12,   0,  10,   0,   0, 0x00 }, // _35
+    {   216, 0x0043,  10,  12,  12,   0,  11,   0,   0, 0x00 }, // _36
+    {   276, 0x0047,  10,  12,  12,   0,  11,   0,   0, 0x00 }, // _40
+    {   336, 0x0048,  10,  12,  12,   0,  10,   0,   0, 0x00 }, // _41
+    {   396, 0x004D,  13,  12,  12,   0,  14,   0,   0, 0x00 }, // _46
+    {   480, 0x004F,  11,  12,  12,   0,  11,   0,   0, 0x00 }, // _48
+    {   552, 0x0050,  10,  12,  12,   0,  10,   0,   0, 0x00 }, // _49
+    {   612, 0x0053,   9,  12,  12,   0,  10,   0,   0, 0x00 }, // _52
+    {   672, 0x0061,   9,   9,   9,   0,   9,   0,   0, 0x00 }, // _66
+    {   717, 0x0063,   8,   9,   9,   0,   9,   0,   0, 0x00 }, // _68
+    {   753, 0x0064,   9,  12,  12,   0,   9,   0,   0, 0x00 }, // _69
+    {   813, 0x0065,   9,   9,   9,   0,   9,   0,   0, 0x00 }, // _70
+    {   858, 0x0066,   6,  12,  12,   0,   6,   0,   0, 0x00 }, // _71
+    {   894, 0x0067,   9,  13,   9,   0,   9,   0,   0, 0x00 }, // _72
+    {   959, 0x0068,   9,  12,  12,   0,   9,   0,   0, 0x00 }, // _73
+    {  1019, 0x0069,   3,  12,  12,   0,   4,   0,   0, 0x00 }, // _74
+    {  1043, 0x006C,   3,  12,  12,   0,   4,   0,   0, 0x00 }, // _77
+    {  1067, 0x006E,   9,   9,   9,   0,   9,   0,   0, 0x00 }, // _79
+    {  1112, 0x006F,   9,   9,   9,   0,   9,   0,   0, 0x00 }, // _80
+    {  1157, 0x0070,   9,  12,   9,   0,   9,   0,   0, 0x00 }, // _81
+    {  1217, 0x0072,   6,   9,   9,   0,   6,   0,   0, 0x00 }, // _83
+    {  1244, 0x0074,   6,  11,  11,   0,   6,   0,   0, 0x00 }, // _85
+    {  1277, 0x0076,   9,   9,   9,   0,   9,   0,   0, 0x00 }, // _87
+    {     0, 0xAC80,  12,  15,  13,   1,  14,   0,   0, 0x00 }, // _1128
     {     0, 0xC11C,  13,  14,  13,   0,  14,   0,   0, 0x00 }, // _2226
     {    98, 0xC13C,  13,  15,  13,   0,  14,   0,   0, 0x00 }, // _2243
-    {   203, 0xC54C,  14,  15,  13,   1,  14,   0,   0, 0x00 }  // _2444
+    {     0, 0xC810,  12,  15,  13,   1,  14,   0,   0, 0x00 }  // _2684
 };
 
 // SCDream6_otf_15_4bpp
@@ -46,9 +43,11 @@ KEEP extern const touchgfx::GlyphNode glyphs_SCDream6_otf_15_4bpp[] FONT_TABLE_L
 FONT_GLYPH_LOCATION_FLASH_PRAGMA
 KEEP extern const uint8_t unicodes_SCDream6_otf_15_4bpp_0[] FONT_GLYPH_LOCATION_FLASH_ATTRIBUTE;
 FONT_GLYPH_LOCATION_FLASH_PRAGMA
-KEEP extern const uint8_t unicodes_SCDream6_otf_15_4bpp_22[] FONT_GLYPH_LOCATION_FLASH_ATTRIBUTE;
+KEEP extern const uint8_t unicodes_SCDream6_otf_15_4bpp_21[] FONT_GLYPH_LOCATION_FLASH_ATTRIBUTE;
 FONT_GLYPH_LOCATION_FLASH_PRAGMA
 KEEP extern const uint8_t unicodes_SCDream6_otf_15_4bpp_24[] FONT_GLYPH_LOCATION_FLASH_ATTRIBUTE;
+FONT_GLYPH_LOCATION_FLASH_PRAGMA
+KEEP extern const uint8_t unicodes_SCDream6_otf_15_4bpp_25[] FONT_GLYPH_LOCATION_FLASH_ATTRIBUTE;
 FONT_SEARCHTABLE_LOCATION_FLASH_PRAGMA
 KEEP extern const uint8_t* const unicodes_SCDream6_otf_15_4bpp[] FONT_SEARCHTABLE_LOCATION_FLASH_ATTRIBUTE = {
     unicodes_SCDream6_otf_15_4bpp_0,
@@ -72,10 +71,11 @@ KEEP extern const uint8_t* const unicodes_SCDream6_otf_15_4bpp[] FONT_SEARCHTABL
     0,
     0,
     0,
+    unicodes_SCDream6_otf_15_4bpp_21,
     0,
-    unicodes_SCDream6_otf_15_4bpp_22,
     0,
-    unicodes_SCDream6_otf_15_4bpp_24
+    unicodes_SCDream6_otf_15_4bpp_24,
+    unicodes_SCDream6_otf_15_4bpp_25
 };
 FONT_KERNING_LOCATION_FLASH_PRAGMA
 KEEP extern const touchgfx::KerningNode kerning_SCDream6_otf_15_4bpp[] FONT_KERNING_LOCATION_FLASH_ATTRIBUTE;
@@ -83,6 +83,6 @@ touchgfx::GeneratedFont& getFont_SCDream6_otf_15_4bpp();
 
 touchgfx::GeneratedFont& getFont_SCDream6_otf_15_4bpp()
 {
-    static touchgfx::GeneratedFont SCDream6_otf_15_4bpp(glyphs_SCDream6_otf_15_4bpp, 34, 19, 15, 0, 0, 4, 1, 0, 1, unicodes_SCDream6_otf_15_4bpp, kerning_SCDream6_otf_15_4bpp, 63, 0, 0, 0);
+    static touchgfx::GeneratedFont SCDream6_otf_15_4bpp(glyphs_SCDream6_otf_15_4bpp, 31, 19, 15, 0, 0, 4, 1, 0, 1, unicodes_SCDream6_otf_15_4bpp, kerning_SCDream6_otf_15_4bpp, 63, 0, 0, 0);
     return SCDream6_otf_15_4bpp;
 }

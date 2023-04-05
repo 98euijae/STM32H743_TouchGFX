@@ -35,7 +35,7 @@ MainViewBase::MainViewBase() :
     redCircle.setCenter(40, 40);
     redCircle.setRadius(40);
     redCircle.setLineWidth(0);
-    redCircle.setArc(0, 360);
+    redCircle.setArc(0, 240);
     redCirclePainter.setColor(touchgfx::Color::getColorFromRGB(255, 0, 0));
     redCircle.setPainter(redCirclePainter);
     add(redCircle);

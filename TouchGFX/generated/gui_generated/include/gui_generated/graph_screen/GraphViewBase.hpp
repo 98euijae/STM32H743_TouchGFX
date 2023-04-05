@@ -8,12 +8,8 @@
 #include <mvp/View.hpp>
 #include <gui/graph_screen/GraphPresenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
-#include <touchgfx/widgets/ButtonWithLabel.hpp>
-#include <touchgfx/containers/Container.hpp>
-#include <touchgfx/widgets/graph/Graph.hpp>
-#include <touchgfx/widgets/graph/GraphElements.hpp>
-#include <touchgfx/widgets/canvas/PainterRGB565.hpp>
-#include <touchgfx/widgets/TextArea.hpp>
+#include <gui/containers/Graph1.hpp>
+#include <touchgfx/widgets/Button.hpp>
 
 class GraphViewBase : public touchgfx::View<GraphPresenter>
 {
@@ -22,33 +18,11 @@ public:
     virtual ~GraphViewBase();
     virtual void setupScreen();
     virtual void handleTickEvent();
-    virtual void transitionBegins();
-    virtual void afterTransition();
 
     /*
      * Virtual Action Handlers
      */
-    virtual void graphBtnClicked()
-    {
-        // Override and implement this function in Graph
-    }
-    virtual void addPointBtnClicked()
-    {
-        // Override and implement this function in Graph
-    }
-    virtual void sensorTextAlarm()
-    {
-        // Override and implement this function in Graph
-    }
-    virtual void changeBoxColorBtnClicked()
-    {
-        // Override and implement this function in Graph
-    }
-    virtual void transStart()
-    {
-        // Override and implement this function in Graph
-    }
-    virtual void transEnd()
+    virtual void sensorAlarmFunc()
     {
         // Override and implement this function in Graph
     }
@@ -62,54 +36,12 @@ protected:
      * Member Declarations
      */
     touchgfx::Box __background;
-    touchgfx::Box box1;
-    touchgfx::ButtonWithLabel graphBtn;
-    touchgfx::ButtonWithLabel addPointBtn;
-    touchgfx::ButtonWithLabel changeScreenBtn;
-    touchgfx::Container graphContainer;
-    touchgfx::Graph<100> ch2Graph;
-    touchgfx::GraphElementGridX ch2GraphMinorXAxisGrid;
-    touchgfx::GraphElementGridY ch2GraphMinorYAxisGrid;
-    touchgfx::GraphElementGridX ch2GraphMajorXAxisGrid;
-    touchgfx::GraphElementGridY ch2GraphMajorYAxisGrid;
-    touchgfx::GraphElementDots ch2GraphDots1;
-    touchgfx::PainterRGB565 ch2GraphDots1Painter;
-    touchgfx::Graph<100> ch4Graph;
-    touchgfx::GraphElementGridX ch4GraphMinorXAxisGrid;
-    touchgfx::GraphElementGridY ch4GraphMinorYAxisGrid;
-    touchgfx::GraphElementGridX ch4GraphMajorXAxisGrid;
-    touchgfx::GraphElementGridY ch4GraphMajorYAxisGrid;
-    touchgfx::GraphElementDots ch4GraphDots1;
-    touchgfx::PainterRGB565 ch4GraphDots1Painter;
-    touchgfx::Graph<100> ch3Graph;
-    touchgfx::GraphElementGridX ch3GraphMinorXAxisGrid;
-    touchgfx::GraphElementGridY ch3GraphMinorYAxisGrid;
-    touchgfx::GraphElementGridX ch3GraphMajorXAxisGrid;
-    touchgfx::GraphElementGridY ch3GraphMajorYAxisGrid;
-    touchgfx::GraphElementDots ch3GraphDots1;
-    touchgfx::PainterRGB565 ch3GraphDots1Painter;
-    touchgfx::Graph<100> ch1Graph;
-    touchgfx::GraphElementGridX ch1GraphMinorXAxisGrid;
-    touchgfx::GraphElementGridY ch1GraphMinorYAxisGrid;
-    touchgfx::GraphElementGridX ch1GraphMajorXAxisGrid;
-    touchgfx::GraphElementGridY ch1GraphMajorYAxisGrid;
-    touchgfx::GraphElementDots ch1GraphDots1;
-    touchgfx::PainterRGB565 ch1GraphDots1Painter;
-    touchgfx::Container graphTextContainer;
-    touchgfx::TextArea ch1SensorText;
-    touchgfx::Box ch1Box;
-    touchgfx::TextArea ch1GraphText;
-    touchgfx::TextArea ch2SensorText;
-    touchgfx::Box ch2Box;
-    touchgfx::TextArea ch2GraphText;
-    touchgfx::TextArea ch3SensorText;
-    touchgfx::Box ch3Box;
-    touchgfx::TextArea ch3GraphText;
-    touchgfx::TextArea ch4SensorText;
-    touchgfx::Box ch4Box;
-    touchgfx::TextArea ch4GraphText;
-    touchgfx::Box box2;
-    touchgfx::ButtonWithLabel changeBoxColorBtn;
+    touchgfx::Box bg;
+    Graph1 CH1graph;
+    touchgfx::Button button1;
+    Graph1 CH2graph;
+    Graph1 CH3graph;
+    Graph1 CH4graph;
 
 private:
 
@@ -120,6 +52,12 @@ private:
     uint8_t canvasBuffer[CANVAS_BUFFER_SIZE];
 
     /*
+     * Tick Counter Declarations
+     */
+    static const uint32_t TICK_SENSORALARMFUNC_INTERVAL = 10;
+    uint32_t frameCountSensorAlarmFuncInterval;
+
+    /*
      * Callback Declarations
      */
     touchgfx::Callback<GraphViewBase, const touchgfx::AbstractButton&> buttonCallback;
@@ -128,12 +66,6 @@ private:
      * Callback Handler Declarations
      */
     void buttonCallbackHandler(const touchgfx::AbstractButton& src);
-
-    /*
-     * Tick Counter Declarations
-     */
-    static const uint32_t TICK_SENSORTEXTALARM_INTERVAL = 20;
-    uint32_t frameCountSensorTextAlarmInterval;
 
 };
 

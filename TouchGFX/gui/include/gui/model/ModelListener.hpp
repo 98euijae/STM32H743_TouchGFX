@@ -14,6 +14,8 @@ public:
     {
         model = m;
     }
+    
+    virtual void graphChanged() {};
 protected:
     Model* model;
 };

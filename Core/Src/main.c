@@ -30,7 +30,12 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+typedef struct {
+    int dataX[DATA_SIZE];
+    int dataY[DATA_SIZE];
+    int readSuccess;
+    int readSize;
+} SDData_t;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -82,17 +87,28 @@ const osThreadAttr_t defaultTask_attributes = {
 osThreadId_t GUI_TaskHandle;
 const osThreadAttr_t GUI_Task_attributes = {
     .name = "GUI_Task",
-    .stack_size = 4096 * 4,
+    .stack_size = 6144 * 4,
     .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for ReadSDData */
 osThreadId_t ReadSDDataHandle;
 const osThreadAttr_t ReadSDData_attributes = {
     .name = "ReadSDData",
-    .stack_size = 1024 * 4,
+    .stack_size = 2048 * 4,
     .priority = (osPriority_t) osPriorityLow,
 };
 /* USER CODE BEGIN PV */
+
+osMessageQueueId_t SDQueueHandle;
+const osMessageQueueAttr_t SDQueueHandle_attr = {
+    .name = "SDQueue"
+};
+
+osEventFlagsId_t SDEventHandle;
+const osEventFlagsAttr_t SDEventHandle_attr = {
+    .name = "SDEvent"
+};
+
 FMC_SDRAM_CommandTypeDef command;
 uint32_t TIMStart = 0;
 uint32_t TIMEnd = 0;
@@ -100,12 +116,13 @@ int g_iTaskCnt = 0;
 FATFS SDFatFs;
 FIL MyFile;
 char SDPath[4];
-int dataX[100];
-int dataY[100];
+//int dataX[100];
+//int dataY[100];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
+static void MPU_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_DMA2D_Init(void);
 static void MX_FMC_Init(void);
@@ -136,6 +153,15 @@ int main(void)
 {
     /* USER CODE BEGIN 1 */
     /* USER CODE END 1 */
+    
+    /* MPU Configuration--------------------------------------------------------*/
+    MPU_Config();
+    
+    /* Enable I-Cache---------------------------------------------------------*/
+    SCB_EnableICache();
+    
+    /* Enable D-Cache---------------------------------------------------------*/
+    SCB_EnableDCache();
     
     /* MCU Configuration--------------------------------------------------------*/
     
@@ -185,6 +211,7 @@ int main(void)
     
     /* USER CODE BEGIN RTOS_QUEUES */
     /* add queues, ... */
+    SDQueueHandle = osMessageQueueNew(4, sizeof(SDData_t), &SDQueueHandle_attr);
     /* USER CODE END RTOS_QUEUES */
     
     /* Create the thread(s) */
@@ -203,6 +230,7 @@ int main(void)
     
     /* USER CODE BEGIN RTOS_EVENTS */
     /* add events, ... */
+    SDEventHandle = osEventFlagsNew(&SDEventHandle_attr);
     /* USER CODE END RTOS_EVENTS */
     
     /* Start scheduler */
@@ -467,11 +495,11 @@ static void MX_LTDC_Init(void)
 //{
 //    
 //    /* USER CODE BEGIN SDMMC1_Init 0 */
-//    //    //    
+//    //    //    //    //    //    
 //    /* USER CODE END SDMMC1_Init 0 */
 //    
 //    /* USER CODE BEGIN SDMMC1_Init 1 */
-//    //    //    
+//    //    //    //    //    //    
 //    /* USER CODE END SDMMC1_Init 1 */
 //    hsd1.Instance = SDMMC1;
 //    hsd1.Init.ClockEdge = SDMMC_CLOCK_EDGE_RISING;
@@ -479,12 +507,13 @@ static void MX_LTDC_Init(void)
 //    hsd1.Init.BusWide = SDMMC_BUS_WIDE_4B;
 //    hsd1.Init.HardwareFlowControl = SDMMC_HARDWARE_FLOW_CONTROL_DISABLE;
 //    hsd1.Init.ClockDiv = 0;
+//    hsd1.Init.TranceiverPresent = SDMMC_TRANSCEIVER_PRESENT;
 //    if (HAL_SD_Init(&hsd1) != HAL_OK)
 //    {
 //        Error_Handler();
 //    }
 //    /* USER CODE BEGIN SDMMC1_Init 2 */
-//    //    //    
+//    //    //    //    //    //    
 //    /* USER CODE END SDMMC1_Init 2 */
 //    
 //}
@@ -732,52 +761,118 @@ void ReadSDDataTask(void *argument)
     uint8_t readData;
     int dataCnt = 0;
     int dataFlag = 0;
+    int minusFlag = 0;
+    uint32_t eventFlags;
+    SDData_t data;
+    
+    data.readSuccess = 0;
     /* Infinite loop */
     for(;;)
     {
+        for(int i = 0; i < DATA_SIZE; i++)
+        {
+            data.dataX[i] = 0;
+            data.dataY[i] = 0;
+        }
+        data.readSize = 0;
+        //        eventFlags = osEventFlagsWait(SDEventHandle, 1, osFlagsWaitAny, osWaitForever);
         if(fileOpenedFlag == 0)
         {
+            __disable_irq();
             if(f_open(&MyFile, "sim_data_conv.txt", FA_READ) == FR_OK)
             {
                 fileOpenedFlag = 1;
             }
+            __enable_irq();
         }
         if(fileOpenedFlag == 1)
         {
-            while(dataCnt != 100)
+            while(dataCnt != DATA_SIZE)
             {
+                __disable_irq();
                 if(f_read(&MyFile, &readData, sizeof(readData), NULL) == FR_OK)
                 {
+                    __enable_irq();
                     if(readData >= 0x30 && readData <= 0x39)
                     {
                         if(dataFlag == 0)
-                            dataX[dataCnt] = (dataX[dataCnt] * 10) + (int)(readData - 0x30);
+                            data.dataX[dataCnt] = (data.dataX[dataCnt] * 10) + (int)(readData - 0x30);
                         else
-                            dataY[dataCnt] = (dataY[dataCnt] * 10) + (int)(readData - 0x30);                                             
+                            data.dataY[dataCnt] = (data.dataY[dataCnt] * 10) + (int)(readData - 0x30);                                             
                     }
                     else if(readData == 0x09 || readData == 0x0A)
                     {
                         if(dataFlag == 0)
+                        {
+                            if(minusFlag == 1)
+                                data.dataX[dataCnt] = -data.dataX[dataCnt];
                             dataFlag = 1;
+                        }
                         else
                         {
+                            if(minusFlag == 1)
+                                data.dataY[dataCnt] = -data.dataY[dataCnt];
                             dataFlag = 0;
                             dataCnt++;
+                            data.readSize++;
                         }
+                        minusFlag = 0;
+                    }
+                    else if(readData == 0x2D)
+                    {
+                        minusFlag = 1;
                     }
                 }
+                else
+                {
+                    __enable_irq();
+                }
+                __disable_irq();
                 if(f_eof(&MyFile))
                 {
                     f_close(&MyFile);
+                    __enable_irq();
                     fileOpenedFlag = 0;
                     break;
                 }
+                __enable_irq();
             }
+            data.readSuccess = 1;
+            dataCnt = 0;
         }
-        
-        osDelay(1);
+        osMessageQueuePut(SDQueueHandle, &data, 0, 0);
+        osDelay(50);
     }
     /* USER CODE END ReadSDDataTask */
+}
+
+/* MPU Configuration */
+
+void MPU_Config(void)
+{
+    MPU_Region_InitTypeDef MPU_InitStruct = {0};
+    
+    /* Disables the MPU */
+    HAL_MPU_Disable();
+    
+    /** Initializes and configures the Region and the memory to be protected
+    */
+    MPU_InitStruct.Enable = MPU_REGION_ENABLE;
+    MPU_InitStruct.Number = MPU_REGION_NUMBER0;
+    MPU_InitStruct.BaseAddress = 0xD0000000;
+    MPU_InitStruct.Size = MPU_REGION_SIZE_64MB;
+    MPU_InitStruct.SubRegionDisable = 0x0;
+    MPU_InitStruct.TypeExtField = MPU_TEX_LEVEL0;
+    MPU_InitStruct.AccessPermission = MPU_REGION_FULL_ACCESS;
+    MPU_InitStruct.DisableExec = MPU_INSTRUCTION_ACCESS_ENABLE;
+    MPU_InitStruct.IsShareable = MPU_ACCESS_SHAREABLE;
+    MPU_InitStruct.IsCacheable = MPU_ACCESS_NOT_CACHEABLE;
+    MPU_InitStruct.IsBufferable = MPU_ACCESS_BUFFERABLE;
+    
+    HAL_MPU_ConfigRegion(&MPU_InitStruct);
+    /* Enables the MPU */
+    HAL_MPU_Enable(MPU_HFNMI_PRIVDEF);
+    
 }
 
 /**

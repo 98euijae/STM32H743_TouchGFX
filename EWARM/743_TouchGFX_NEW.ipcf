@@ -19,6 +19,9 @@
             <group name="common">
                 <path>$PROJ_DIR$/../TouchGFX/gui/src/common/FrontendApplication.cpp</path>
             </group>
+            <group name="containers">
+                <path>$PROJ_DIR$/../TouchGFX/gui/src/containers/Graph1.cpp</path>
+            </group>
             <group name="graph_screen">
                 <path>$PROJ_DIR$/../TouchGFX/gui/src/graph_screen/GraphPresenter.cpp</path>
                 <path>$PROJ_DIR$/../TouchGFX/gui/src/graph_screen/GraphView.cpp</path>
@@ -39,8 +42,9 @@
                 <path>$PROJ_DIR$/../TouchGFX/generated/fonts/src/Font_consola_20_4bpp_0.cpp</path>
                 <path>$PROJ_DIR$/../TouchGFX/generated/fonts/src/Font_consolab_15_4bpp_0.cpp</path>
                 <path>$PROJ_DIR$/../TouchGFX/generated/fonts/src/Font_SCDream6_otf_15_4bpp_0.cpp</path>
-                <path>$PROJ_DIR$/../TouchGFX/generated/fonts/src/Font_SCDream6_otf_15_4bpp_22.cpp</path>
+                <path>$PROJ_DIR$/../TouchGFX/generated/fonts/src/Font_SCDream6_otf_15_4bpp_21.cpp</path>
                 <path>$PROJ_DIR$/../TouchGFX/generated/fonts/src/Font_SCDream6_otf_15_4bpp_24.cpp</path>
+                <path>$PROJ_DIR$/../TouchGFX/generated/fonts/src/Font_SCDream6_otf_15_4bpp_25.cpp</path>
                 <path>$PROJ_DIR$/../TouchGFX/generated/fonts/src/Font_verdana_10_4bpp_0.cpp</path>
                 <path>$PROJ_DIR$/../TouchGFX/generated/fonts/src/Font_verdana_20_4bpp_0.cpp</path>
                 <path>$PROJ_DIR$/../TouchGFX/generated/fonts/src/Font_verdana_40_4bpp_0.cpp</path>
@@ -64,12 +68,11 @@
             </group>
             <group name="gui_generated">
                 <path>$PROJ_DIR$/../TouchGFX/generated/gui_generated/src/common/FrontendApplicationBase.cpp</path>
+                <path>$PROJ_DIR$/../TouchGFX/generated/gui_generated/src/containers/Graph1Base.cpp</path>
                 <path>$PROJ_DIR$/../TouchGFX/generated/gui_generated/src/graph_screen/GraphViewBase.cpp</path>
                 <path>$PROJ_DIR$/../TouchGFX/generated/gui_generated/src/main_screen/MainViewBase.cpp</path>
             </group>
             <group name="images">
-                <path>$PROJ_DIR$/../TouchGFX/generated/images/src/__generated/image_alternate_theme_images_widgets_button_regular_height_36_tiny_rounded_normal.cpp</path>
-                <path>$PROJ_DIR$/../TouchGFX/generated/images/src/__generated/image_alternate_theme_images_widgets_button_regular_height_36_tiny_rounded_pressed.cpp</path>
                 <path>$PROJ_DIR$/../TouchGFX/generated/images/src/__generated/image_alternate_theme_images_widgets_button_regular_height_50_medium_rounded_normal.cpp</path>
                 <path>$PROJ_DIR$/../TouchGFX/generated/images/src/__generated/image_alternate_theme_images_widgets_button_regular_height_50_medium_rounded_pressed.cpp</path>
                 <path>$PROJ_DIR$/../TouchGFX/generated/images/src/BitmapDatabase.cpp</path>

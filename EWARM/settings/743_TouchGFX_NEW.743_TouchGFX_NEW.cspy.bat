@@ -25,7 +25,7 @@ if not "%~1" == "" goto debugFile
 
 @echo on 
 
-"C:\Program Files\IAR Systems\Embedded Workbench 9.0\common\bin\cspybat" -f "D:\Project\TouchGFX\743_TouchGFX_NEW_SD_20230329\EWARM\settings\743_TouchGFX_NEW.743_TouchGFX_NEW.general.xcl" --backend -f "D:\Project\TouchGFX\743_TouchGFX_NEW_SD_20230329\EWARM\settings\743_TouchGFX_NEW.743_TouchGFX_NEW.driver.xcl" 
+"C:\Program Files\IAR Systems\Embedded Workbench 9.0\common\bin\cspybat" -f "D:\Project\TouchGFX\743_TouchGFX_Git\STM32H743_TouchGFX\EWARM\settings\743_TouchGFX_NEW.743_TouchGFX_NEW.general.xcl" --backend -f "D:\Project\TouchGFX\743_TouchGFX_Git\STM32H743_TouchGFX\EWARM\settings\743_TouchGFX_NEW.743_TouchGFX_NEW.driver.xcl" 
 
 @echo off 
 goto end 
@@ -34,7 +34,7 @@ goto end
 
 @echo on 
 
-"C:\Program Files\IAR Systems\Embedded Workbench 9.0\common\bin\cspybat" -f "D:\Project\TouchGFX\743_TouchGFX_NEW_SD_20230329\EWARM\settings\743_TouchGFX_NEW.743_TouchGFX_NEW.general.xcl" "--debug_file=%~1" --backend -f "D:\Project\TouchGFX\743_TouchGFX_NEW_SD_20230329\EWARM\settings\743_TouchGFX_NEW.743_TouchGFX_NEW.driver.xcl" 
+"C:\Program Files\IAR Systems\Embedded Workbench 9.0\common\bin\cspybat" -f "D:\Project\TouchGFX\743_TouchGFX_Git\STM32H743_TouchGFX\EWARM\settings\743_TouchGFX_NEW.743_TouchGFX_NEW.general.xcl" "--debug_file=%~1" --backend -f "D:\Project\TouchGFX\743_TouchGFX_Git\STM32H743_TouchGFX\EWARM\settings\743_TouchGFX_NEW.743_TouchGFX_NEW.driver.xcl" 
 
 @echo off 
 :end

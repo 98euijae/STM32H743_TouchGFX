@@ -1,23 +1,20 @@
 #include <gui/graph_screen/GraphView.hpp>
 #include <texts/TextKeysAndLanguages.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
-#include <stdlib.h>
-#include <time.h>
+#include <touchgfx/Color.hpp>
 #include "main.h"
 #include "stm32h7xx_hal_tim.h"
+#include "cmsis_os2.h"
 
-extern uint32_t TIMStart;
-extern uint32_t TIMEnd;
-extern TIM_HandleTypeDef htim2;
-extern int dataX[100];
-extern int dataY[100];
-double d_tim;
+extern "C" 
+{
+    extern osEventFlagsId_t SDEventHandle;
+}
+
 
 GraphView::GraphView()
 {
-    srand(time(NULL));
-    m_iGraphVisible = 1;
-    m_iSensorFlag = 1;
+    sensorFlag = false;
 }
 
 void GraphView::setupScreen()
@@ -30,83 +27,43 @@ void GraphView::tearDownScreen()
     GraphViewBase::tearDownScreen();
 }
 
-void GraphView::graphBtnClicked()
+void GraphView::setGraph(int dataX[DATA_SIZE], int dataY[DATA_SIZE], int dataCnt)
 {
-    if(m_iGraphVisible == 1)
-    {
-        graphContainer.setVisible(false);
-        graphTextContainer.setVisible(false);
-        graphBtn.setLabelText(T_GRAPHBTNON);
-        m_iGraphVisible = 0;
-    }
-    else
-    {
-        graphContainer.setVisible(true);
-        graphTextContainer.setVisible(true);
-        graphBtn.setLabelText(T_GRAPHBTNOFF);
-        m_iGraphVisible = 1;
-    }
-    graphContainer.invalidate();
-    graphTextContainer.invalidate();
-    graphBtn.invalidate();
-}
-
-void GraphView::addPointBtnClicked()
-{
-//    srand(time(NULL));
-//    int randomX[4];
-//    int randomY[4];
+//    Circle newCircle;
+//    PainterRGB565 circlePainter;
+//    circlePainter.setColor(touchgfx::Color::getColorFromRGB(255, 0, 0));
 //    
-//    for(int i = 0; i < 4; i++)
+//    for(int i = 0; i < DATA_SIZE; i++)
 //    {
-//        randomX[i] = rand() % 200 - 100;
-//        randomY[i] = rand() % 200 - 100;
+//        newCircle.setCircle((int)((double)dataX[DATA_SIZE] * 0.1f), 
+//                            (int)((double)dataY[DATA_SIZE] * 0.1f),
+//                            2);
+//        newCircle.setPainter(circlePainter);
+//        CH1graph.add(newCircle);
 //    }
-//    
-//    ch1Graph.addDataPointScaled(randomX[0], randomY[0]);
-//    ch2Graph.addDataPointScaled(randomX[1], randomY[1]);
-//    ch3Graph.addDataPointScaled(randomX[2], randomY[2]);
-//    ch4Graph.addDataPointScaled(randomX[3], randomY[3]);
-    for(int i = 0; i < 30; i++)
+//    CH1graph.invalidate();
+    uint32_t start = osKernelGetTickCount();
+    uint32_t end;
+    for(int i = 0; i < dataCnt; i++)
     {
-        ch1Graph.addDataPointScaled(dataX[i], dataY[i]);
+        CH1graph.addCircle(dataX[i], dataY[i], CH1graph.getX(), CH1graph.getY());
+        CH2graph.addCircle(dataX[i], dataY[i], CH2graph.getX(), CH2graph.getY());
+        CH3graph.addCircle(dataX[i], dataY[i], CH3graph.getX(), CH3graph.getY());
+        CH4graph.addCircle(dataX[i], dataY[i], CH4graph.getX(), CH4graph.getY());
     }
+    end = osKernelGetTickCount();
+    end = end - start;
 }
 
-void GraphView::sensorTextAlarm()
+void GraphView::sensorAlarmFunc()
 {
-    if(m_iSensorFlag == 1)
-    {
-        ch1SensorText.setVisible(true);
-        ch2SensorText.setVisible(true);
-        ch3SensorText.setVisible(true);
-        ch4SensorText.setVisible(true);
-        m_iSensorFlag = 0;
-    }
+    if(sensorFlag)
+        sensorFlag = false;
     else
-    {
-        ch1SensorText.setVisible(false);
-        ch2SensorText.setVisible(false);
-        ch3SensorText.setVisible(false);
-        ch4SensorText.setVisible(false);
-        m_iSensorFlag = 1;
-    }
-    graphTextContainer.invalidate();
-}
-
-void GraphView::changeBoxColorBtnClicked()
-{
-    box2.setColor((box2.getColor() ^ 0x00FF00));
-    box2.invalidate();
-}
-
-void GraphView::transStart()
-{
-    TIMStart = htim2.Instance->CNT;
-}
-
-void GraphView::transEnd()
-{
-    TIMEnd = htim2.Instance->CNT;
-    d_tim = (TIMEnd - TIMStart) / 200000000.f;
+        sensorFlag = true;
+    
+    CH1graph.setSensorTextVisible(sensorFlag);
+    CH2graph.setSensorTextVisible(sensorFlag);
+    CH3graph.setSensorTextVisible(sensorFlag);
+    CH4graph.setSensorTextVisible(sensorFlag);
 }

@@ -1372,10 +1372,13 @@
           <name>$PROJ_DIR$\..\TouchGFX\generated\fonts\src\Font_SCDream6_otf_15_4bpp_0.cpp</name>
         </file>
         <file>
-          <name>$PROJ_DIR$\..\TouchGFX\generated\fonts\src\Font_SCDream6_otf_15_4bpp_22.cpp</name>
+          <name>$PROJ_DIR$\..\TouchGFX\generated\fonts\src\Font_SCDream6_otf_15_4bpp_21.cpp</name>
         </file>
         <file>
           <name>$PROJ_DIR$\..\TouchGFX\generated\fonts\src\Font_SCDream6_otf_15_4bpp_24.cpp</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\TouchGFX\generated\fonts\src\Font_SCDream6_otf_15_4bpp_25.cpp</name>
         </file>
         <file>
           <name>$PROJ_DIR$\..\TouchGFX\generated\fonts\src\Font_verdana_10_4bpp_0.cpp</name>
@@ -1444,6 +1447,9 @@
           <name>$PROJ_DIR$\..\TouchGFX\generated\gui_generated\src\common\FrontendApplicationBase.cpp</name>
         </file>
         <file>
+          <name>$PROJ_DIR$\..\TouchGFX\generated\gui_generated\src\containers\Graph1Base.cpp</name>
+        </file>
+        <file>
           <name>$PROJ_DIR$\..\TouchGFX\generated\gui_generated\src\graph_screen\GraphViewBase.cpp</name>
         </file>
         <file>
@@ -1454,12 +1460,6 @@
         <name>images</name>
         <file>
           <name>$PROJ_DIR$\..\TouchGFX\generated\images\src\BitmapDatabase.cpp</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\TouchGFX\generated\images\src\__generated\image_alternate_theme_images_widgets_button_regular_height_36_tiny_rounded_normal.cpp</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\TouchGFX\generated\images\src\__generated\image_alternate_theme_images_widgets_button_regular_height_36_tiny_rounded_pressed.cpp</name>
         </file>
         <file>
           <name>$PROJ_DIR$\..\TouchGFX\generated\images\src\__generated\image_alternate_theme_images_widgets_button_regular_height_50_medium_rounded_normal.cpp</name>
@@ -1490,6 +1490,12 @@
         <name>common</name>
         <file>
           <name>$PROJ_DIR$\..\TouchGFX\gui\src\common\FrontendApplication.cpp</name>
+        </file>
+      </group>
+      <group>
+        <name>containers</name>
+        <file>
+          <name>$PROJ_DIR$\..\TouchGFX\gui\src\containers\Graph1.cpp</name>
         </file>
       </group>
       <group>

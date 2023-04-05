@@ -26,6 +26,8 @@ public:
     virtual void deactivate();
 
     virtual ~GraphPresenter() {};
+    
+    virtual void graphChanged();
 
 private:
     GraphPresenter();

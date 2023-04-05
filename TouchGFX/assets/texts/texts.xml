@@ -5,32 +5,11 @@
   </Languages>
   <Texts>
     <TextGroup Id="Unsorted">
-      <Text Id="__SingleUse_2XBY" Alignment="Center" TypographyId="SCoreDream_15">
-        <Translation Language="GB">Color</Translation>
+      <Text Id="ch1SensorText" Alignment="Left" TypographyId="SCoreDream_15">
+        <Translation Language="GB">센서 점검</Translation>
       </Text>
-      <Text Id="__SingleUse_QOVO" Alignment="Left" TypographyId="SCoreDream_15">
-        <Translation Language="GB">CH4</Translation>
-      </Text>
-      <Text Id="__SingleUse_HPQR" Alignment="Left" TypographyId="SCoreDream_15">
-        <Translation Language="GB">센서알람</Translation>
-      </Text>
-      <Text Id="__SingleUse_L538" Alignment="Left" TypographyId="SCoreDream_15">
-        <Translation Language="GB">CH3</Translation>
-      </Text>
-      <Text Id="__SingleUse_WGTF" Alignment="Left" TypographyId="SCoreDream_15">
-        <Translation Language="GB">센서알람</Translation>
-      </Text>
-      <Text Id="__SingleUse_B787" Alignment="Left" TypographyId="SCoreDream_15">
-        <Translation Language="GB">CH2</Translation>
-      </Text>
-      <Text Id="__SingleUse_B2S8" Alignment="Left" TypographyId="SCoreDream_15">
-        <Translation Language="GB">센서알람</Translation>
-      </Text>
-      <Text Id="__SingleUse_723H" Alignment="Left" TypographyId="SCoreDream_15">
+      <Text Id="ch1Text" Alignment="Center" TypographyId="SCoreDream_15">
         <Translation Language="GB">CH1</Translation>
-      </Text>
-      <Text Id="__SingleUse_RGJN" Alignment="Left" TypographyId="SCoreDream_15">
-        <Translation Language="GB">센서알람</Translation>
       </Text>
       <Text Id="graphBtnOn" Alignment="Center" TypographyId="SCoreDream_15">
         <Translation Language="GB">Graph On</Translation>
